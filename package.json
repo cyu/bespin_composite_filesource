@@ -1,0 +1,26 @@
+{
+    "description": "File source that is composited of one or more sources",
+    "dependencies": {},
+    "provides": [
+        {
+            "ep": "factory",
+            "name": "composite_filesource",
+            "action": "new",
+            "pointer": "index#CompositeFileSource"
+        },
+        {
+            "ep": "command",
+            "name": "mount",
+            "params":
+            [
+                {
+                    "name": "server",
+                    "type": "text",
+                    "description": "&lt;server name&gt;:&lt;port&gt;"
+                }
+            ],
+            "description": "Add a server as a file source",
+            "pointer": "commands#mount"
+        }
+    ]
+}
