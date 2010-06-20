@@ -1,0 +1,62 @@
+= Composite Filesource Plugin for Bespin
+
+A Bespin plugin that allows multiple filesources to be mounted and accessible by Bespin.  This plugin is meant to be used as the primary filesource for a custom installation of Bespin, and provides a *mount* command for mounting other file servers.
+
+This plugin only works on the very latest Bespin client (v0.8).
+
+== Configuration
+
+To configure the Bespin client to use this plugin, you'll need to build a customized version of BespinEmbedded.  You can find more information about this here:
+
+  https://bespin.mozillalabs.com/docs/embedding/building.html
+
+Here's what my build manifest looks like:
+
+  {
+      "output_dir" : "../../public/bespin",
+      "plugins"    : [
+              "embedded",
+              "syntax_manager",
+              "bespin_server",
+              "file_commands",
+              "uicommands",
+
+              "javascript",
+              "html",
+
+              "composite_filesource"
+      ],
+      "dynamic_plugins" : [],
+      "search_path"     : ["../plugins"],
+
+      "config": {
+          "objects": {
+              "filesource": {
+                  "factory"   : "composite_filesource",
+                  "arguments" : [ "initialSource" ],
+                  "objects"   : { "0": "bespin_filesource" }
+              },
+              "bespin_filesource": {
+                  "factory"   : "bespin_filesource",
+                  "arguments" : [ "server" ],
+                  "objects"   : { "0": "server" }
+              }
+          }
+      }
+  }
+
+In my case, I have the composite_filesource plugin in a *plugins* directory located at the same
+directory level of BespinEmbedded installation directory.  You'll also want to tweak the *output_dir*
+to point to where you want the output files to go.
+
+== Usage
+
+Once configured you can just run the following in the command line to mount a new file source:
+
+  mount localhost:8888
+
+The file server will need to support the same functions as the default Bespin filesource.  In addition,
+it will also have to support Cross-Origin Resource Sharing.  You can get the file server I built here
+(Ruby-based):
+
+  http://github.com/cyu/bespin_files_ruby
