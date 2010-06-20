@@ -1,12 +1,18 @@
 = Composite Filesource Plugin for Bespin
 
-A Bespin plugin that allows multiple filesources to be mounted and accessible by Bespin.  This plugin is meant to be used as the primary filesource for a custom installation of Bespin, and provides a *mount* command for mounting other file servers.
+This is a Bespin plugin that allows multiple file sources to be accessible by Bespin.
+What I wanted to be able to do is to mount a local fileserver from a remote Bespin
+installation so I can access local files.
 
 This plugin only works on the very latest Bespin client (v0.8).
 
 == Configuration
 
-To configure the Bespin client to use this plugin, you'll need to build a customized version of BespinEmbedded.  You can find more information about this here:
+To configure the Bespin client to use this plugin, you'll need to build a customized
+version of BespinEmbedded so you can make the composite_filesource plugin the primary
+file source for Bespin.
+
+You can find more information about how to build a customized version of BespinEmbedded here:
 
   https://bespin.mozillalabs.com/docs/embedding/building.html
 
@@ -46,17 +52,17 @@ Here's what my build manifest looks like:
   }
 
 In my case, I have the composite_filesource plugin in a *plugins* directory located at the same
-directory level of BespinEmbedded installation directory.  You'll also want to tweak the *output_dir*
+directory level of my BespinEmbedded installation directory.  You'll also want to tweak the *output_dir*
 to point to where you want the output files to go.
 
 == Usage
 
-Once configured you can just run the following in the command line to mount a new file source:
+Once configured, you can run the *mount* command in the command line to add a new file source:
 
   mount localhost:8888
 
-The file server will need to support the same functions as the default Bespin filesource.  In addition,
+The file server will need to support the same functions as the default Bespin file source.  In addition,
 it will also have to support Cross-Origin Resource Sharing.  You can get the file server I built here
 (Ruby-based):
 
-  http://github.com/cyu/bespin_files_ruby
+  http://github.com/cyu/bespin_filesrb
