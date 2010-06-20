@@ -14,7 +14,7 @@ file source for Bespin.
 
 You can find more information about how to build a customized version of BespinEmbedded here:
 
-  https://bespin.mozillalabs.com/docs/embedding/building.html
+https://bespin.mozillalabs.com/docs/embedding/building.html
 
 Here's what my build manifest looks like:
 
@@ -65,4 +65,4 @@ The file server will need to support the same functions as the default Bespin fi
 it will also have to support Cross-Origin Resource Sharing.  You can get the file server I built here
 (Ruby-based):
 
-  http://github.com/cyu/bespin_filesrb
+http://github.com/cyu/bespin_filesrb
